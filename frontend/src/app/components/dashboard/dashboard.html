@@ -1,0 +1,174 @@
+<div class="p-8 w-full max-w-[1600px] mx-auto fade-in">
+    <div class="dashboard-content">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-slate-900 m-0">Dashboard</h1>
+            <a routerLink="/create-invoice"
+                class="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg no-underline font-medium transition-all duration-200 shadow-sm hover:bg-primary-dark hover:-translate-y-px hover:shadow-md">
+                <span class="text-xl leading-none">+</span> Create Invoice
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <!-- Total Invoices Card -->
+            <div
+                class="group bg-white border border-slate-200 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg hover:border-slate-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="p-4 bg-slate-100 rounded-xl group-hover:bg-slate-200 transition-colors duration-300">
+                        <svg class="w-7 h-7 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-full">Total</span>
+                </div>
+                <div>
+                    <p class="text-slate-500 text-sm font-medium mb-2 uppercase tracking-wide">Total Invoices</p>
+                    <p class="text-4xl font-bold text-slate-900 mb-1">{{ stats.totalInvoices }}</p>
+                    <p class="text-xs text-slate-400">All time</p>
+                </div>
+            </div>
+
+            <!-- Paid Amount Card -->
+            <div
+                class="group bg-white border border-slate-200 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg hover:border-slate-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="p-4 bg-slate-100 rounded-xl group-hover:bg-slate-200 transition-colors duration-300">
+                        <svg class="w-7 h-7 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span
+                        class="px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-full">Received</span>
+                </div>
+                <div>
+                    <p class="text-slate-500 text-sm font-medium mb-2 uppercase tracking-wide">Paid Amount</p>
+                    <p class="text-4xl font-bold text-slate-900 mb-1">₹{{ stats.paidAmount | number }}</p>
+                    <p class="text-xs text-green-600 font-medium">✓ Collected</p>
+                </div>
+            </div>
+
+            <!-- Pending Amount Card -->
+            <div
+                class="group bg-white border border-slate-200 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg hover:border-slate-300">
+                <div class="flex items-start justify-between mb-6">
+                    <div class="p-4 bg-slate-100 rounded-xl group-hover:bg-slate-200 transition-colors duration-300">
+                        <svg class="w-7 h-7 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full">Due</span>
+                </div>
+                <div>
+                    <p class="text-slate-500 text-sm font-medium mb-2 uppercase tracking-wide">Pending Amount</p>
+                    <p class="text-4xl font-bold text-slate-900 mb-1">₹{{ stats.pendingAmount | number }}</p>
+                    <p class="text-xs text-amber-600 font-medium">⏱ Outstanding</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Invoices Table -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm">
+            <h2 class="text-lg font-semibold text-slate-900 px-6 pt-6 pb-4 m-0 border-b border-slate-200">Recent
+                Invoices</h2>
+            <div class="overflow-visible">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr>
+                            <th
+                                class="bg-slate-50 text-slate-500 font-semibold text-xs uppercase tracking-wider px-6 py-4 text-left border-b border-slate-200">
+                                Invoice #</th>
+                            <th
+                                class="bg-slate-50 text-slate-500 font-semibold text-xs uppercase tracking-wider px-6 py-4 text-left border-b border-slate-200">
+                                Date</th>
+                            <th
+                                class="bg-slate-50 text-slate-500 font-semibold text-xs uppercase tracking-wider px-6 py-4 text-left border-b border-slate-200">
+                                Client</th>
+                            <th
+                                class="bg-slate-50 text-slate-500 font-semibold text-xs uppercase tracking-wider px-6 py-4 text-left border-b border-slate-200">
+                                Amount</th>
+                            <th
+                                class="bg-slate-50 text-slate-500 font-semibold text-xs uppercase tracking-wider px-6 py-4 text-left border-b border-slate-200">
+                                Status</th>
+                            <th
+                                class="bg-slate-50 text-slate-500 font-semibold text-xs uppercase tracking-wider px-6 py-4 text-left border-b border-slate-200">
+                                Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let invoice of invoices$ | async" class="hover:bg-slate-50">
+                            <td class="px-6 py-4 text-slate-900 text-sm border-b border-slate-200 font-medium">{{
+                                invoice.invoiceNumber }}</td>
+                            <td class="px-6 py-4 text-slate-900 text-sm border-b border-slate-200">{{ invoice.date |
+                                date }}</td>
+                            <td class="px-6 py-4 text-slate-900 text-sm border-b border-slate-200">{{ invoice.clientName
+                                }}</td>
+                            <td class="px-6 py-4 text-slate-900 text-sm border-b border-slate-200">₹{{
+                                invoice.totalAmount | number }}</td>
+                            <td class="px-6 py-4 border-b border-slate-200">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold"
+                                    [ngClass]="{
+                                        'bg-green-50 text-green-600': invoice.status === 'Paid', 
+                                        'bg-amber-50 text-amber-600': invoice.status === 'Pending',
+                                        'bg-blue-50 text-blue-600': invoice.status === 'Partial'
+                                      }">
+                                    {{ invoice.status }}
+                                    <span *ngIf="invoice.status === 'Partial'" class="ml-1">
+                                        (₹{{ invoice.paidAmount | number }})
+                                    </span>
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 border-b border-slate-200">
+                                <div class="relative action-menu-container">
+                                    <button (click)="toggleMenu($event, invoice.id)"
+                                        class="p-2 rounded-md text-slate-500 hover:bg-slate-100 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                        </svg>
+                                    </button>
+
+                                    <div *ngIf="activeMenuId === invoice.id"
+                                        class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-slate-100 z-10 py-1">
+                                        <button (click)="updateStatus(invoice, 'Paid')"
+                                            class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 border-none bg-transparent cursor-pointer">
+                                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                            Mark as Paid
+                                        </button>
+                                        <button (click)="updateStatus(invoice, 'Pending')"
+                                            class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 border-none bg-transparent cursor-pointer">
+                                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                            Mark as Pending
+                                        </button>
+                                        <button (click)="updateStatus(invoice, 'Partial')"
+                                            class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 border-none bg-transparent cursor-pointer">
+                                            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                            Mark as Partial
+                                        </button>
+                                        <div class="h-px bg-slate-100 my-1"></div>
+                                        <button (click)="viewPdf(invoice)"
+                                            class="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 border-none bg-transparent cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            </svg>
+                                            View Invoice
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

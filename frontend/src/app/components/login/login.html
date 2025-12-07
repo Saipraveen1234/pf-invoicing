@@ -1,0 +1,25 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 p-4 fade-in">
+    <div class="w-full max-w-[400px] p-10 rounded-2xl bg-white/95 shadow-xl border border-white/50">
+        <div class="flex justify-center mb-8">
+            <img src="png-PF.png" alt="Paper Free" class="h-12 object-contain">
+        </div>
+        <h2
+            class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-600 mb-8 text-center tracking-tight">
+            Unlock your cash flow</h2>
+        <form (ngSubmit)="login()">
+            <div class="mb-6">
+                <label for="password" class="block text-sm font-medium text-slate-600 mb-2">Password</label>
+                <input [(ngModel)]="password" name="password" id="password" type="password"
+                    placeholder="Enter your password"
+                    class="w-full px-4 py-3 border border-slate-200 rounded-lg text-base text-slate-800 bg-slate-50 transition-all duration-200 focus:outline-none focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/20 placeholder:text-slate-400">
+            </div>
+            <div *ngIf="error" class="text-red-600 text-sm mb-4 text-center bg-red-50 p-2 rounded-md">
+                {{ error }}
+            </div>
+            <button type="submit"
+                class="w-full py-3.5 bg-primary text-white font-semibold rounded-lg border-none cursor-pointer transition-all duration-200 text-base shadow-sm hover:bg-primary-dark hover:-translate-y-px hover:shadow-md active:translate-y-0">
+                Sign In
+            </button>
+        </form>
+    </div>
+</div>
