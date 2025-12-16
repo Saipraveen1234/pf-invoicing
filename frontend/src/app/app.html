@@ -1,5 +1,5 @@
 <div class="app-container" *ngIf="{ isLoggedIn: authService.isLoggedIn$ | async } as auth">
-  <app-sidebar *ngIf="auth.isLoggedIn"></app-sidebar>
+  <app-sidebar *ngIf="auth.isLoggedIn && !isLoginPage"></app-sidebar>
   <main class="main-content">
     <router-outlet></router-outlet>
   </main>
